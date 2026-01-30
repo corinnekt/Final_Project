@@ -53,7 +53,10 @@ export default function Blog() { //Blog() needs to give props to EditButton, Del
     
     return (
         <>
+        <div className="m-5">
             <h1>Create Blog Post</h1>
+        </div>
+        <div className="m-5">
             <form onSubmit={handlePublish}>
                 <label>
                     Title
@@ -65,10 +68,11 @@ export default function Blog() { //Blog() needs to give props to EditButton, Del
                     <input value={blogText} onChange={(e) => setBlogText(e.target.value)}/>
                 </label>
                 <br />
-            <button type="submit">Publish</button>
-      </form>
+            <button className="m-2" type="submit">Publish</button>
+          </form>
+        </div>  
 
-      <h1>Published Posts</h1>
+      <h1 className="m-5">Published Posts</h1>
       {blogPost.map((post) => (
         <div key={post.id} >
           <h2>{post.blogTitle}</h2>
