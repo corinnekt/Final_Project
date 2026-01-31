@@ -61,6 +61,7 @@ export default function Blog() { //Blog() needs to give props to EditButton, Del
     try {
       const updatedPost = await updateEntry({
         ...post,
+        comments: post.comments ?? [],
         blogTitle: editBlogTitle,
         blogText: editBlogText,
       });
