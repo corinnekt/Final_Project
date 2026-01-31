@@ -1,3 +1,6 @@
+
+// BlogPost and Gomment types have ids that are strings to match API and save data
+
 export type BlogPost = {
     id: string,
     blogTitle: string,
@@ -18,6 +21,8 @@ export type CommentsProps = {
     editComment: (id: string, text: string) => void
     deleteComment: (id: string) => void
 }
+
+// renamed to MyButtonProps to resolve error where these button props were confused with React-Bootrap button props
 
 export type MyButtonProps = {
     onClick: () => void
