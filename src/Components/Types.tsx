@@ -7,15 +7,19 @@ export type BlogPost = {
 }
 
 export type Comment = {
-    id: number
-    text: string
+    id: string
+    text: string,
+    date: String
 }
 
 export type CommentsProps = {
     comments: Comment[],
     addComment: (text: string) => void
+    editComment: (id: string, text: string) => void
+    deleteComment: (id: string) => void
 }
 
-export type ButtonProps = {
+export type MyButtonProps = {
     onClick: () => void
+    label?: string
 }

@@ -1,9 +1,10 @@
-import type { ButtonProps } from "react-bootstrap";
 
-export default function EditButton({ onClick} : ButtonProps) {
+import type { MyButtonProps } from './Types'
+
+export default function EditButton({ onClick, label = "Edit"} : MyButtonProps) {
     return (
         <button type="button" onClick={onClick}>
-            Edit
+            {label}
         </button>
     )
 }

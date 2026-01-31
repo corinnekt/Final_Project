@@ -3,7 +3,7 @@
 // ✅ Use React Router
 // ✅ have at least 3 pages using React Bootstrap
 // ✅ Contain at least 10 custom components
-// ✅Allow for all CRUD operations via one or more APIs
+// ✅ Allow for all CRUD operations via one or more APIs
 
 
 

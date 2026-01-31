@@ -1,6 +1,7 @@
-import type { ButtonProps } from "react-bootstrap";
 
-export default function DeleteButton( { onClick } : ButtonProps ) {
+import type { MyButtonProps } from "./Types";
+
+export default function DeleteButton( { onClick } : MyButtonProps ) {
     return (
         <button type="button" onClick={onClick}>
             Delete
