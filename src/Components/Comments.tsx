@@ -15,10 +15,10 @@ export default function Comments( { comments, addComment }: CommentsProps) {
     
     return (
         <>
-            <div>
-            <h2>Add a Comment</h2>
+            <div className="m-3">
+            <h6>Add a Comment</h6>
             </div>
-            <div>
+            <div className="m-3">
             <form onSubmit={handlePost}>
                 {comments.map((c) => (
                     <div key={c.id}>

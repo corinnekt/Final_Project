@@ -1,5 +1,5 @@
 export type BlogPost = {
-    id: number,
+    id: string,
     blogTitle: string,
     blogText: string,
     comments: Comment[], // a blog post will have a comment section so a comment section is part of its type

@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Comments from "./Comments";
 import type {BlogPost} from './Types'
 import EditButton from "./EditButton";
 import DeleteButton from "./DeleteButton";
+import { createEntry, fetchEntries } from './API'
 
 
 export default function Blog() { //Blog() needs to give props to EditButton, DeleteButton, and Comments
@@ -13,22 +14,31 @@ export default function Blog() { //Blog() needs to give props to EditButton, Del
     const [nextBlogPostId, setNextBlogPostId] = useState(1)
     const [nextCommentId, setNextCommentId] = useState(1)
 
-    const handlePublish = (e: React.FormEvent<HTMLFormElement>) => {
+    const handlePublish = async (
+      e: React.FormEvent<HTMLFormElement>
+    ) => {
         e.preventDefault()
-        const newBlogPost: BlogPost = {
-            id: nextBlogPostId,
+        const newBlogPost: Omit<BlogPost, "id"> = {            
             blogTitle,
             blogText,
-            comments: [],
-            isPublished: true
+            isPublished: true,
+            comments: []
         }
-        setBlogPost([newBlogPost, ...blogPost])
+
+        try {
+          const savedEntry = await createEntry(newBlogPost)
+        
+
+        setBlogPost((prev) => [savedEntry, ...prev])
         setNextBlogPostId(nextBlogPostId + 1)
         setBlogTitle("")
         setBlogText("")
+      } catch (err) {
+        console.log(err)
+      }
     }
 
-    const handleAddComment = (postId: number, text: string)  => {
+    const handleAddComment = (postId: string, text: string)  => {
     setBlogPost((prev) =>
       prev.map((post) =>
         post.id === postId
@@ -42,15 +52,29 @@ export default function Blog() { //Blog() needs to give props to EditButton, Del
     setNextCommentId(nextCommentId + 1);
     }
 
-    const handleEditPost = (postId: number) => {
+    const handleEditPost = (postId: string) => {
     console.log("Edit post", postId);
-    // Implement editing logic here
+    //  editing logic here
   };
 
-  const handleDeletePost = (postId: number) => {
+  const handleDeletePost = (postId: string) => {
     setBlogPost((prev) => prev.filter((post) => post.id !== postId));
   };
+
+  
+  useEffect(() => {
+    async function loadEntries() {
+      try {
+        const data = await fetchEntries()
+        setBlogPost(data)
+      } catch (err) {
+        console.error(err)
+      }
+    }
+    loadEntries()
+  }, [])
     
+console.log(blogPost)
     return (
         <>
         <div className="m-5">
@@ -58,19 +82,21 @@ export default function Blog() { //Blog() needs to give props to EditButton, Del
         </div>
         <div className="m-5">
             <form onSubmit={handlePublish}>
-                <label>
-                    Title
-                    <input value={blogTitle} onChange={(e) => setBlogTitle(e.target.value)}/>
-                </label>
-                <br />
-                <label>
-                    Text
-                    <input value={blogText} onChange={(e) => setBlogText(e.target.value)}/>
-                </label>
-                <br />
-            <button className="m-2" type="submit">Publish</button>
-          </form>
-        </div>  
+              <input 
+                value={blogTitle} 
+                onChange={(e) => setBlogTitle(e.target.value)}
+                placeholder="Title"
+              />
+              <br />
+              <input 
+                value={blogText} 
+                onChange={(e) => setBlogText(e.target.value)}
+                placeholder="Text"
+              />
+              <br />
+             <button className="m-2" type="submit">Publish</button>
+            </form>
+          </div>  
 
       <h1 className="m-5">Published Posts</h1>
       {blogPost.map((post) => (

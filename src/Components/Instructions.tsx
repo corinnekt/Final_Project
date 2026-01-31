@@ -28,6 +28,6 @@
 // ✅ It has at least 3 React components
 //- It’s displaying the data
 // ✅ It’s using at least 1 prop
-//- A user can create new items
-//- A user can delete items
+//-✅ A user can create new items
+//-✅ A user can delete items
 //- A user can update at least one property on the items
