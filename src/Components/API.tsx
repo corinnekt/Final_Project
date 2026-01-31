@@ -21,3 +21,13 @@ export async function createEntry(
     return response.json()
 }
 
+// update
+export async function updateEntry(post: BlogPost): Promise<BlogPost> {
+  const response = await fetch(`${URL}/${post.id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(post),
+  });
+  if (!response.ok) throw new Error("Failed to update post");
+  return response.json();
+}
