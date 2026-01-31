@@ -3,7 +3,7 @@
 // ✅ Use React Router
 // ✅ have at least 3 pages using React Bootstrap
 // ✅ Contain at least 10 custom components
-//Allow for all CRUD operations via one or more APIs
+// ✅Allow for all CRUD operations via one or more APIs
 
 
 
@@ -30,4 +30,4 @@
 // ✅ It’s using at least 1 prop
 //-✅ A user can create new items
 //-✅ A user can delete items
-//- A user can update at least one property on the items
+//-✅ A user can update at least one property on the items
